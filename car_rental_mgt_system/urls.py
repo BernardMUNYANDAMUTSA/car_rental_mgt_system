@@ -41,4 +41,7 @@ urlpatterns = [
     path('publish/', publish_to_kafka, name='publish_to_kafka'),
     path('input/', lambda request: render(request, 'input_page.html'), name='input_page'),
     path('realtime-display/', lambda request: render(request, 'realtime_display.html'), name='realtime_display'),
+
+    path('list_bookings/', booking_view, name='booking_view'),
+    
 ]

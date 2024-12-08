@@ -88,7 +88,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" id="rentalReg" href="#"
+                            <a class="nav-link" id="bookingList" href="#"
                                 style="color: rgb(193, 193, 197); font-size: 15pt;">Bookings</a>
                         </li>
                     </ul>
@@ -171,6 +171,17 @@
                 }
             });
         });
+
+        $("#bookingList").click(function () {
+            $.ajax({
+                url: "/list_bookings",  // Backend URL
+                type: "GET",
+                success: function (data) {
+                    $("#content").html(data);  // Load dashboard content without changing URL
+                }
+            });
+        });
+
     </script>
 </body>
 

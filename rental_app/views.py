@@ -301,9 +301,6 @@ def send_confirmation_email(request):
 
 
 
-
-
-
 # Kafka Producer setup
 producer = Producer({'bootstrap.servers': 'localhost:9092'})
 
@@ -318,6 +315,11 @@ def publish_to_kafka(request):
         
         return JsonResponse({'status': 'success', 'message': 'Message sent to Kafka!'})
     return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
+
+   
+def booking_view(request):
+    bookingsList = Booking.objects.all()
+    return render(request, 'bookings.html', {'bookingsList': bookingsList})
 
 
 
