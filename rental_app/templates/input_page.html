@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Input</title>
+    <script>
+        function sendUserInput() {
+            const userInput = document.getElementById("user-input").value;
+
+            fetch('/publish/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: `user_input=${encodeURIComponent(userInput)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    //alert('Message sent to Kafka!');
+                    document.getElementById("user-input").value = '';
+                } else {
+                    //alert('Error: ' + data.message);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>User Input Page</h1>
+    <form onsubmit="event.preventDefault(); sendUserInput();">
+        <label for="user-input">Enter your input:</label>
+        <input type="text" id="user-input" name="user_input" required>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

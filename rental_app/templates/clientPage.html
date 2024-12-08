@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Booking</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script>
+        function setCarId(car_id) {
+           //alert(car_id);
+           document.getElementById("myInput").value = car_id;
+        }
+    
+      </script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .booking-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+    <div class="container">
+        <br>
+        <div class="form-group row">
+            <div class="col-sm-2" align="left"><img src="../static/images/logo2.jpg" alt="Avatar Logo"
+                    style="width:100px;" class="rounded-pill"></div>
+            <div class="col-sm-8" align="center">
+                <h1>Car Rental Management System</h1>
+            </div>
+            <div class="col-sm-2" align="right"><img src="../static/images/logo1.jpg" alt="Avatar Logo"
+                    style="width:100px;" class="rounded-pill"></div>
+        </div>
+        <div align="center">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <ul class="nav navbar-nav navbar-left">
+
+                  
+                </ul>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="nav navbar-nav navbar-right"><span style="color: white; padding-top: 20px;">{{ user.first_name }} {{ user.last_name }} ( Client )</span>
+                        <li><a class="navbar-brand"><img src="../static/images/MyPhoto.jpg" alt="Avatar Logo"
+                                    style="width:30px;" class="rounded-pill"> </a></li>
+                        <li><a href="/logout/"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div align="right">
+            {% for message in messages %}
+            <p style="font-size: x-large; color: green;">{{ message }}</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            {% for car_obj in cars_list %}
+            {% if car_obj.status == 'Available' %}
+            <div class="col-lg-6">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h4><b>Available</b></h4>
+                    </div>
+                    <div class="panel-body">
+                        <span class="chat-img pull-left">
+                            <img src="../static/images/car_image.jpg" alt="User Avatar" class="img-circle" />
+                        </span>
+                        <div>
+                            <strong class="primary-font">  {{ car_obj.plate_number }} / {{ car_obj.model }}  </strong>
+                            </br></br>
+                                <label>Manifacturing year: {{ car_obj.year }}</label></br>
+                                <label>Car's Color: {{ car_obj.color }}</label></br>
+                                <label>Transmission : {{ car_obj.transmission }}</label></br>
+                                <label>Cost/day : {{ car_obj.cost_per_day }} Rwf</label></br>
+                            
+                        </div>
+                    </div>
+                    <div class="panel-footer" align="center">
+                        <button type="button" onclick="setCarId('{{ car_obj.car_id }}')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#bookingModal">Book Now</button>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-lg-6">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <h4><b>Not available</b></h4>
+                    </div>
+                    <div class="panel-body">
+                        <span class="chat-img pull-left">
+                            <img src="../static/images/car_image4.jpg" alt="User Avatar" class="img-circle" />
+                        </span>
+                        <div>
+                            <div>
+                                <strong class="primary-font">  {{ car_obj.plate_number }} / {{ car_obj.model }}</strong>
+                                </br></br>
+                                    <label>Manifacturing year: {{ car_obj.year }}</label></br>
+                                    <label>Car's Color: {{ car_obj.color }}</label></br>
+                                    <label>Transmission : {{ car_obj.transmission }}</label></br>
+                                    <label>Cost/day : {{ car_obj.cost_per_day }} Rwf</label></br>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="panel-footer" align="center">
+                        <a class="btn btn-danger btn-lg">Booked</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+    </div>
+
+    <div class="container">
+      
+        <!-- Modal -->
+        <div class="modal fade" id="bookingModal" role="dialog">
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button style="background-color: red;" type="button" class="close btn btn-danger" data-dismiss="modal">&times;Close</button>
+              </div>
+              <div class="modal-body">
+                <p class="modal-title"></p>
+                <form id="bookingForm"  class="form-horizontal">
+                    {% csrf_token %}
+                    <input type="hidden" name="car_id" id="myInput"/>
+                    <input type="hidden" name="client_id" id="client_id" value="{{ user.id }}"/>
+                    <div class="form-group">
+                        <label for="text1" class="control-label col-lg-4">Start Date:</label>
+    
+                        <div class="col-lg-8">
+                            <input type="date" name="start_date" id="start_date"  class="form-control" required/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="text1" class="control-label col-lg-4">End Date: </label>
+    
+                        <div class="col-lg-8">
+                            <input type="date" name="end_date" id="end_date"  class="form-control" required/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="text1" class="control-label col-lg-4">Upload payment receipt </label>
+    
+                        <div class="col-lg-8">
+                            <input type="file" name="file" id="file"  class="form-control" required/>
+                        </div>
+                    </div>
+                    
+                    <div align="center">
+                    <button type="submit" class="btn btn-success">Submit your Booking</button>
+                    </div>
+                </form>
+
+
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+
+      <div class="panel-footer" style="margin-top: 50px;">
+        ACE-DS/Cloud Computing and Web Programming/ Project Assignment &copy; Copyright Group No2 ; &nbsp;2014
+        &nbsp;
+    </div>
+</div>
+      
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+
+        $("#bookingId").click(function () {
+            window.location.href = "/booking/";
+        });
+
+/*
+        $('#bookingForm').on('submit', function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "/create_booking/",
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function(response) {
+                    $('#responseMessage').text(response.message);
+                    window.location.href = "/booking/";
+                },
+                error: function(xhr) {
+                    alert(xhr.responseJSON.message);
+                    $('#responseMessage').text(xhr.responseJSON.message);
+                }
+            });
+        }); */
+
+        $('#bookingForm').on('submit', function(e) {
+            e.preventDefault();
+            // Create FormData object to include file data
+            var formData = new FormData(this);
+            $.ajax({
+                url: "/create_booking/",
+                type: 'POST',
+                data: formData,
+                contentType: false, // Prevent jQuery from setting the content type
+                processData: false, // Prevent jQuery from processing the data
+                success: function(response) {
+                    $('#responseMessage').text(response.message);
+                    window.location.href = "/booking/";
+                },
+                error: function(xhr) {
+                    alert(xhr.responseJSON.message);
+                    $('#responseMessage').text(xhr.responseJSON.message);
+                }
+            });
+        });
+
+       
+    </script>
+</body>
+
+</html>

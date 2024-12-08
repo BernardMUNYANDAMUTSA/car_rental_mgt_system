@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Updates</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const updatesList = document.getElementById("updates-list");
+            const socket = new WebSocket('ws://http://127.0.0.1:8000/ws/user-input/');
+
+            socket.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                const newItem = document.createElement("li");
+                newItem.textContent = data.message;
+                updatesList.appendChild(newItem);
+            };
+
+            socket.onopen = () => {
+                console.log("WebSocket connection established.");
+            };
+
+            socket.onclose = () => {
+                console.log("WebSocket connection closed.");
+            };
+        });
+    </script>
+</head>
+<body>
+    <h1>Real-Time User Inputs</h1>
+    <ul id="updates-list">
+        <!-- Real-time updates will appear here -->
+    </ul>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Car</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Book a Car</h1>
+    <form id="bookingForm">
+        {% csrf_token %}
+        <label for="car">Select Car:</label>
+        <select name="car_id" id="car">
+            {% for car in cars %}
+                <option value="{{ car.car_id }}">{{ car.plate_number }} </option>
+            {% endfor %}
+        </select><br><br>
+        
+        <label for="customer_name">Customer Name:</label>
+        <input type="text" name="customer_name" id="customer_name" required><br><br>
+        
+        <label for="customer_email">Customer Email:</label>
+        <input type="email" name="customer_email" id="customer_email" required><br><br>
+        
+        <label for="start_date">Start Date:</label>
+        <input type="date" name="start_date" id="start_date" required><br><br>
+        
+        <label for="end_date">End Date:</label>
+        <input type="date" name="end_date" id="end_date" required><br><br>
+        
+        <button type="submit">Book Car</button>
+    </form>
+    
+    <p id="responseMessage"></p>
+
+    <script>
+   
+        $('#bookingForm').on('submit', function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "/create_booking/",
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function(response) {
+                    alert(response.message);
+                    $('#responseMessage').text(response.message);
+                },
+                error: function(xhr) {
+                    alert(xhr.responseJSON.message);
+                    $('#responseMessage').text(xhr.responseJSON.message);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        .card {
+            display: inline-block;
+            width: 150px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            position: relative;
+            margin: 10px;
+        }
+
+        .card i {
+            font-size: 40px;
+            color: #444;
+        }
+
+        .card span.badge {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            padding: 5px 10px;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .badge-danger {
+            background-color: #dc3545;
+        }
+
+        .badge-success {
+            background-color: #28a745;
+        }
+
+        .card-title {
+            margin-top: 15px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <br>
+        <div class="form-group row">
+            <div class="col-sm-2" align="left"><img src="../static/images/logo2.jpg" alt="Avatar Logo"
+                    style="width:100px;" class="rounded-pill"></div>
+            <div class="col-sm-8" align="center">
+                <h1>Car Rental Management System</h1>
+            </div>
+            <div class="col-sm-2" align="right"><img src="../static/images/logo1.jpg" alt="Avatar Logo"
+                    style="width:100px;" class="rounded-pill"></div>
+        </div>
+
+        <div align="center">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="nav navbar-nav navbar-left">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="home_page"
+                                style="color: rgb(193, 193, 197); font-size: 15pt;">Home </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" id="driverReg" href="#"
+                                style="color: rgb(193, 193, 197); font-size: 15pt;">Drivers</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" id="carReg" href="#"
+                                style="color: rgb(193, 193, 197); font-size: 15pt;">Car Registration</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" id="rentalReg" href="#"
+                                style="color: rgb(193, 193, 197); font-size: 15pt;">Bookings</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right"><span style="color: white; padding-top: 20px;">{{user.first_name }} {{ user.last_name }} (Super User)</span>
+                        <li><a class="navbar-brand"><img src="../static/images/MyPhoto.jpg" alt="Avatar Logo" style="width:30px;" class="rounded-pill"> </a></li>
+                        <li><a href="/logout/"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="container" id="content" align="center">
+        <div class="panel panel-default">
+            <div align="right">
+                {% for message in messages %}
+                <p style="font-size: x-large; color: green;">{{ message }}</p>
+                {% endfor %}
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1> Admin Dashboard </h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="container text-center mt-5">
+                    <!-- Product Card -->
+                    <div class="card">
+                        <i class="bi bi-check2-square"></i>
+                        <span class="badge badge-success">{{ available_cars }} </span>
+                        <div class="card-title">Available</div>
+                    </div>
+
+                    <!-- Messages Card -->
+                    <div class="card">
+                        <i class="bi bi-envelope"></i>
+                        <span class="badge badge-danger">{{ booked_cars }}</span>
+                        <div class="card-title">Booked</div>
+                    </div>
+
+                    <div class="card">
+                        <i class="bi bi-envelope"></i>
+                        <span class="badge" style="color: white; background-color: blue;">{{ subscribers }}</span>
+                        <div class="card-title">Subscribers</div>
+                    </div>
+
+                    <div class="card">
+                        <i class="bi bi-envelope"></i>
+                        <span class="badge" style="color: yellow; background-color: green;">{{ total_income }}</span>
+                        <div class="card-title">Income(Rwf)</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="panel-footer" style="margin-top: 200px;">
+                ACE-DS/Cloud Computing and Web Programming/ Project Assignment &copy; Copyright Group No2 ; &nbsp;2014
+                &nbsp;
+            </div>
+        </div>
+    </div>
+    <script>
+
+        $("#driverReg").click(function () {
+            $.ajax({
+                url: "/record_driver",  // Backend URL
+                type: "GET",
+                success: function (data) {
+                    $("#content").html(data);  // Load dashboard content without changing URL
+                }
+            });
+        });
+
+        $("#carReg").click(function () {
+            $.ajax({
+                url: "/record_car",  // Backend URL
+                type: "GET",
+                success: function (data) {
+                    $("#content").html(data);  // Load dashboard content without changing URL
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Email</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            margin: 50px auto;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+        input, button {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Send Confirmation Email</h1>
+    <form id="emailForm" method="post">
+        {% csrf_token %}
+        <input type="email" name="email" id="email" placeholder="Enter email" required>
+        <button type="button" onclick="sendEmail()">Send Email</button>
+    </form>
+    <p id="statusMessage"></p>
+    <script>
+        function getCSRFToken() {
+            const name = 'csrftoken';
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.startsWith(name + '=')) {
+                    return cookie.substring(name.length + 1);
+                }
+            }
+            return null;
+        }
+    
+        async function sendEmail() {
+            const email = document.getElementById('email').value;
+            const csrfToken = getCSRFToken();
+            const response = await fetch('/send-email/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken,
+                },
+                body: JSON.stringify({ email }),
+            });
+    
+            const result = await response.json();
+            const statusMessage = document.getElementById('statusMessage');
+            if (response.ok) {
+                statusMessage.textContent = result.message || 'Email sent successfully!';
+                statusMessage.style.color = 'green';
+            } else {
+                statusMessage.textContent = result.message || 'Failed to send email.';
+                statusMessage.style.color = 'red';
+            }
+        }
+    </script>
+    
+</body>
+</html>

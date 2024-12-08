@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Index</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <br>
+    <div class="form-group row">
+      <div class="col-sm-2" align="left"><img src="../static/images/logo2.jpg" alt="Avatar Logo" style="width:100px;"
+          class="rounded-pill"></div>
+      <div class="col-sm-8" align="center">
+        <h1>Car Rental Management System</h1>
+      </div>
+      <div class="col-sm-2" align="right"><img src="../static/images/logo1.jpg" alt="Avatar Logo" style="width:100px;"
+          class="rounded-pill"></div>
+    </div>
+
+    <div align="center">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="nav navbar-nav navbar-left">
+
+            <li class="nav-item">
+              <a class="nav-link" style="color: rgb(193, 193, 197); font-size: 15pt;">Home </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" style="color: rgb(193, 193, 197); font-size: 15pt;">Drivers</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" style="color: rgb(193, 193, 197); font-size: 15pt;">Car Registration</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" style="color: rgb(193, 193, 197); font-size: 15pt;">Bookings</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right"><span style="color: white; padding-top: 20px;">{{ user.first_name }}
+              {{ user.last_name }} (Super User)</span>
+            <li><a class="navbar-brand"><img src="../static/images/MyPhoto.jpg" alt="Avatar Logo" style="width:30px;"
+                  class="rounded-pill"> </a></li>
+            <li><a href="/logout/"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <form method="POST" class="post-form" action="/update_driver/{{driver.driver_id}}">
+    {% csrf_token %}
+    <div class="container">
+
+      <div class="form-group row">
+        <label class="col-sm-1 col-form-label"></label>
+        <div class="col-sm-4">
+          <h3>Update Details</h3>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Driver Id:</label>
+        <div class="col-sm-4">
+          <input type="text" name="driver_id" id="driver_id" required maxlength="20" value="{{ driver.driver_id }}"
+            disabled />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Driver First_Name :</label>
+        <div class="col-sm-4">
+          <input type="text" name="first_name" id="first_name" required maxlength="100"
+            value="{{ driver.first_name }}" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Driver Last_Name:</label>
+        <div class="col-sm-4">
+          <input type="text" name="last_name" id="id_ename" required maxlength="100" value="{{ driver.last_name }}" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Driving license:</label>
+        <div class="col-sm-4">
+          <input type="text" name="driving_license" id="driving_license" required maxlength="100"
+            value="{{ driver.driving_license }}" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Driver Email:</label>
+        <div class="col-sm-4">
+          <input type="email" name="email" id="email" required maxlength="254" value="{{ driver.email }}" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Driver Contact:</label>
+        <div class="col-sm-4">
+          <input type="text" name="phone" id="phone" required maxlength="15" value="{{ driver.phone }}" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-1 col-form-label"></label>
+        <div class="col-sm-4">
+          <button type="submit" class="btn btn-success">Update</button>
+        </div>
+      </div>
+
+      <div class="panel-footer" style="margin-top: 80px;">
+        ACE-DS/Cloud Computing and Web Programming/ Project Assignment &copy; Copyright Group No2 ; &nbsp;2014 &nbsp;
+      </div>
+    </div>
+
+
+  </form>
+</body>
+
+</html>

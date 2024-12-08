@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Index</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+  <form method="POST" class="post-form" action="/record_rental/">
+    {% csrf_token %}
+    <div class="container">
+
+      <div class="form-group row">
+        <label class="col-sm-1 col-form-label"></label>
+        <div class="col-sm-4">
+          <h3>Car Rental Form</h3>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Car Plate No :</label>
+        <div class="col-sm-4">
+          <select>
+            {% for car in allcars %}
+            <option id="car_id" name="car_id" value="{{ car.car_id }}">{{ car.license_plate }} </option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Employee names :</label>
+        <div class="col-sm-4">
+          <select>
+            {% for employee in employees %}
+            <option id="employee_id" name="employee_id" value="{{ employee.employee_id }}">{{ employee.first_name }} {{ employee.last_name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Customer names :</label>
+        <div class="col-sm-4">
+          <select>
+            {% for customerObj in customers %}
+            <option id="customer_id" name="customer_id" value="{{ customerObj.customer_id }}">{{ customerObj.first_name }} {{ customerObj.last_name }} </option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Rental Date</label>
+        <div class="col-sm-4">
+          <input type="date" name="rental_date" id="rental_date"></input>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Return Date</label>
+        <div class="col-sm-4">
+          <input type="date" name="return_date" id="return_date"></input>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Cost :</label>
+        <div class="col-sm-4">
+          <input type="number" id="total_cost" name="total_cost"></input>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-1 col-form-label"></label>
+        <div class="col-sm-4">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+
+  </form>
+
+  </div>
+</body>
+
+</html>

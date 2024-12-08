@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Index</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+  <form method="POST" class="post-form" action="/record_car/">
+    {% csrf_token %}
+    <div class="container">
+
+      <div class="form-group row">
+        <label class="col-sm-1 col-form-label"></label>
+        <div class="col-sm-4">
+          <h3>Car Details</h3>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Plate Number :</label>
+        <div class="col-sm-4">
+          {{ form.plate_number }}
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Model :</label>
+        <div class="col-sm-4">
+          {{ form.model }}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Year :</label>
+        <div class="col-sm-4">
+          {{ form.year }}
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Color :</label>
+        <div class="col-sm-4">
+          {{ form.color }}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Cost/day :</label>
+        <div class="col-sm-4">
+          {{ form.cost_per_day }}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Transmission :</label>
+        <div class="col-sm-4">
+          <select name="transmission" class="form-control">
+            <option value="Automatic">Automatic</option>
+            <option value="Manuel">Manuel</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Drivers :</label>
+        <div class="col-sm-4">
+          <select name="driver_id" class="form-control">
+            {% for driver in drivers %}
+            <option id="driver_id" name="driver_id" value="{{ driver.driver_id }}">{{ driver.first_name }} {{ driver.last_name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row" hidden>
+        <div class="col-sm-4">
+          {{ form.status }}
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-1 col-form-label"></label>
+        <div class="col-sm-4">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</body>
+
+</html>
