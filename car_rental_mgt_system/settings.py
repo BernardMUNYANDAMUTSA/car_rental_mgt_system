@@ -76,27 +76,27 @@ WSGI_APPLICATION = 'car_rental_mgt_system.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'car_rental_db2',
-        'USER': 'postgres',
-        'PASSWORD': 'Uwamunya83',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
-
 #DATABASES = {
 #    'default': {
-#        'ENGINE': 'django.db.backends.mysql',
- #       'NAME': 'CARBOOKINGDB',
- #       'USER': 'admin',
- #       'PASSWORD': 'CarRentalDb1234!',
- #       'HOST': 'carrentaldb2.cduyou0yqavd.eu-north-1.rds.amazonaws.com',  
- #       'PORT': '3306',  # Default MySQL port
- #   } 
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'car_rental_db2',
+#        'USER': 'postgres',
+#        'PASSWORD': 'Uwamunya83',
+#        'HOST': 'localhost',
+#        'PORT': '5432',
+#    }
 #}
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'CARBOOKINGDB',
+        'USER': 'admin',
+        'PASSWORD': 'CarRentalDb1234!',
+        'HOST': 'carrentaldb2.cduyou0yqavd.eu-north-1.rds.amazonaws.com',  
+        'PORT': '3306',  # Default MySQL port
+    } 
+}
 
 
 # Password validation

@@ -34,13 +34,7 @@ urlpatterns = [
     path('logout/', logout_view, name='logout'),
     path('', login_view, name='login'),
     path('booking/', renting_view, name='booking'),
-    path('KafkaBooking/', bookingView),
     path('create_booking/', create_booking, name='create_booking'), 
-    path('send-email-form/', email_form, name='email_form'),
-    path('send-email/', send_confirmation_email, name='send_email'),
-    path('publish/', publish_to_kafka, name='publish_to_kafka'),
-    path('input/', lambda request: render(request, 'input_page.html'), name='input_page'),
-    path('realtime-display/', lambda request: render(request, 'realtime_display.html'), name='realtime_display'),
     path('list_bookings/', booking_view, name='booking_view'),
     
 ]

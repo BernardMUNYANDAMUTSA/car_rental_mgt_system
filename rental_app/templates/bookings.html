@@ -17,7 +17,6 @@
           <th>B_Id</th>
           <th>Client Names</th>
           <th>Booked Car</th>
-          <th>Car Status</th>
           <th>Cost/Day</th>
           <th>Book date</th>
           <th>Return date</th>
@@ -33,7 +32,6 @@
           <td>{{ bookingObj.booking_id }}</td>
           <td>{{ bookingObj.client_id.first_name }} {{ bookingObj.client_id.last_name }}</td>
           <td>{{ bookingObj.car_id.plate_number }} / {{ bookingObj.car_id.model }}</td>
-          <td>{{ bookingObj.car_id.status }}</td>
           <td>{{ bookingObj.car_id.cost_per_day }}</td>
           <td>{{ bookingObj.booking_date }}</td>
           <td>{{ bookingObj.return_date }}</td>
@@ -85,17 +83,18 @@
 
     function cancelBooking(booking_id) {
 
-      if (confirm(`Are you sure you want to delete Driver whose driver_ID= ${booking_id} ?`)) {
+      if (confirm(`Are you sure you want to cancel booking No= ${booking_id} ?`)) {
         $.ajax({
           url: "/cancel_booking/" + booking_id,  // Backend URL
           type: "GET",
           success: function (data) {
-            $("#content").html(data);  // Load dashboard content without changing URL
+            window.location.href = "/home_page";
+            //$("#content").html(data);  // Load dashboard content without changing URL
           }
         });
-        alert(`Driver whose driver_ID = ${booking_id} deleted successfull !`);
+        alert(`Booking No = ${booking_id} canceled successfull !`);
       } else {
-        alert(`Deletion canceled.`);
+        alert(`Booking canceled.`);
       }
     }
 

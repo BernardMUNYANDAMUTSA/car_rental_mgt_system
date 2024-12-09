@@ -171,7 +171,6 @@ def logout_view(request):
 # Example of session data access
 def example_view(request):
     if request.user.is_authenticated:
-        #return render(request, 'dashboard.html')
         return redirect('record_driver')
     
     else:
@@ -248,7 +247,8 @@ def create_booking(request):
             messages.warning(request, "The error occured while approving, try again !")
 
     cars = Car.objects.filter(status='Available')
-    return render(request, 'create_booking.html', {'cars': cars})
+    return redirect('/home_page')
+    #return render(request, 'create_booking.html', {'cars': cars})
 
 
 def approve_booking(request, id):
@@ -294,50 +294,6 @@ def cancel_booking(request, id):
     carObj.save()
     messages.success(request, "The booking has been canceled !")
     return redirect('/home_page')
-
-def bookingView(request):
-    #cars = Car.objects.filter(status='Available')
-    cars = Car.objects.all()
-    return render(request, 'create_booking.html', {'cars': cars})
-
-
-
-def email_form(request):
-    return render(request, 'send_email.html')
-
-def send_confirmation_email(request):
-    """Handle the email submission."""
-    if request.method == 'POST':
-        try:
-            data = json.loads(request.body)
-            email_data = {
-                'recipient': 'munya.bernard@gmail.com',#data.get('munya.bernard@gmail.com'),
-                'subject': 'Email Confirmation',
-                'message': 'Please confirm your email address by clicking the link333.',
-            }
-            send_email_to_kafka(json.dumps(email_data))
-            return JsonResponse({'message': 'Email request sent to Kafka successfully!'})
-        except Exception as e:
-            return JsonResponse({'message': f'Error: {str(e)}'}, status=500)
-    return JsonResponse({'message': 'Invalid request method'}, status=405)
-
-
-
-# Kafka Producer setup
-producer = Producer({'bootstrap.servers': 'localhost:9092'})
-
-def publish_to_kafka(request):
-    if request.method == 'POST':
-        user_input = request.POST.get('user_input', '')
-        message = json.dumps({'user_input': user_input})
-        
-        # Publish message to Kafka topic
-        producer.produce('carBookedTopic', message)
-        producer.flush()
-        
-        return JsonResponse({'status': 'success', 'message': 'Message sent to Kafka!'})
-    return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
-
    
 def booking_view(request):
     #bookingsList = Booking.objects.all()
