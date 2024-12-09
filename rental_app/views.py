@@ -94,8 +94,10 @@ def home_page(request):
     available_cars_list = Car.objects.filter(status='Available')
     booked_cars_list = Car.objects.filter(status='Booked')
     subscribers_list = User.objects.filter(is_superuser = False)
-    total_income = Booking.objects.aggregate(total=Sum('total_cost'))['total']
-    return render(request,'homePage.html', {'available_cars':available_cars_list.count(),'booked_cars':booked_cars_list.count(),'subscribers':subscribers_list.count(), 'total_income':total_income})
+    total_income = Booking.objects.filter(status="Approved").aggregate(total=Sum('total_cost'))['total'] # summation where status is approved
+    pending_booking_list = Booking.objects.filter(status='Pending')
+    approved_booking_list = Booking.objects.filter(status='Approved')
+    return render(request,'homePage.html', {'available_cars':available_cars_list.count(),'booked_cars':booked_cars_list.count(),'subscribers':subscribers_list.count(), 'total_income':total_income, 'totalPending_bookings':pending_booking_list.count(), 'totalApproved_bookings':approved_booking_list.count()})
 
 def signup_view(request):
     if request.method == 'POST':
@@ -143,8 +145,10 @@ def login_view(request):
                 available_cars_list = Car.objects.filter(status='Available')
                 booked_cars_list = Car.objects.filter(status='Booked')
                 subscribers_list = User.objects.filter(is_superuser = False)
-                total_income = Booking.objects.aggregate(total=Sum('total_cost'))['total']
-                return render(request,'homePage.html',{'user':user,'available_cars':available_cars_list.count(),'booked_cars':booked_cars_list.count(),'subscribers':subscribers_list.count(), 'total_income':total_income})
+                total_income = Booking.objects.filter(status="Approved").aggregate(total=Sum('total_cost'))['total'] # summation where status is approved
+                pending_booking_list = Booking.objects.filter(status='Pending')
+                approved_booking_list = Booking.objects.filter(status='Approved')
+                return render(request,'homePage.html',{'user':user,'available_cars':available_cars_list.count(),'booked_cars':booked_cars_list.count(),'subscribers':subscribers_list.count(), 'total_income':total_income, 'totalPending_bookings':pending_booking_list.count(), 'totalApproved_bookings':approved_booking_list.count()})
             
             else:
                 form = BookingForm()   
@@ -191,16 +195,11 @@ def upload_to_hdfs(file, file_name):
 def create_booking(request):
     if request.method == 'POST':
         try:
-
-            file = request.FILES['file']
-            upload_to_hdfs(file, file.name)
-                                       
+                        
             car_id = request.POST['car_id']
             client_id = request.POST['client_id']
-
             booking_date_str = str(request.POST['start_date'])
             return_date_str = str(request.POST['end_date'])
-
             # Convert the strings to datetime objects
             booking_date = datetime.strptime(booking_date_str, "%Y-%m-%d")
             return_date = datetime.strptime(return_date_str, "%Y-%m-%d")
@@ -208,8 +207,8 @@ def create_booking(request):
             car = Car.objects.get(car_id=car_id)
             clientObj = User.objects.get(id=client_id)
 
-            #customer_email = {clientObj.email}
-            #customer_name = {clientObj.first_name}
+            file = request.FILES['file']
+            upload_to_hdfs(file, f"{car.plate_number}_{clientObj.first_name} {clientObj.last_name}_{file.name}") # upload file into hdfs
 
             if car.status != 'Available':
                 return JsonResponse({'message': 'Car is already booked!'}, status=400)
@@ -218,60 +217,83 @@ def create_booking(request):
                 car_id=car,
                 total_cost= ((return_date - booking_date).days) * car.cost_per_day,
                 client_id=clientObj,
-                status='Approved',
+                status='Pending',
                 booking_date=booking_date,
                 return_date=return_date
             )
-
-            car.status = 'Booked'
+            car.status = 'Pending'
             car.save()
-
-            # Publish event to Kafka
-            #producer = Producer({'bootstrap.servers': settings.KAFKA_BROKER_URL})
-            #producer.produce('bookingCreated', value=f"{booking.booking_id},{car_id},{customer_name},{customer_email}")
-            #producer.flush()
 
             body = f"""Dear {clientObj.first_name} {clientObj.last_name},
 
-        Thank you for booking with us! Here are your booking details:
+        Thank you for booking with us, we have received your booking request our Car( {car.plate_number} /{car.model} )! You will receive an approval email shortly. Here are the details of your booking:
 
         - **Booking Date:** {booking_date}
         - **Return Date:** {return_date}
-        - **Total Amount to Pay:** {((return_date - booking_date).days) * car.cost_per_day} Rwf
-        - **Driver Names :** {car.driver_id.first_name} {car.driver_id.last_name}
-        - **Driver's phone Number :** {car.driver_id.phone}
-        - **Driver's email :** {car.driver_id.email}
-        We appreciate your trust in our service and look forward to serving you!
+        - **Total Amount:** {((return_date - booking_date).days) * car.cost_per_day} Rwf
+
+        We appreciate your trust in our service!
+
+        Best regards,
+        ACE-DS/DataMining/cohot6/Group No2
+        """  
+            email_data = {
+                'recipient': clientObj.email,
+                'subject': 'Booking submission confirmation',
+                'message': body,
+            }
+            send_email_to_kafka(json.dumps(email_data)) # Email request sent to Kafka successfully
+            messages.success(request, "Your booking, submitted successfully, check on your email!")
+        except Exception as e:
+            messages.warning(request, "The error occured while approving, try again !")
+
+    cars = Car.objects.filter(status='Available')
+    return render(request, 'create_booking.html', {'cars': cars})
+
+
+def approve_booking(request, id):
+    if request.method == 'GET':
+        try:
+            bookingObj =  Booking.objects.get(booking_id=id)
+            bookingObj.status = 'Approved'
+            bookingObj.save()
+
+            carObj = bookingObj.car_id
+            carObj.status = 'Booked'
+            carObj.save()
+
+            body = f"""Dear {bookingObj.client_id.last_name} {bookingObj.client_id.first_name},
+            This is to confirm that your booking on Car  {bookingObj.car_id.plate_number} /{bookingObj.car_id.model} has been approved, contact our Driver:
+            - Driver Names : {bookingObj.car_id.driver_id.last_name} {bookingObj.car_id.driver_id.first_name}
+            - Driver's phone Number : {bookingObj.car_id.driver_id.phone}
+            - Driver's email : {bookingObj.car_id.driver_id.email}
+            We appreciate your trust in our service and look forward to serving you!
 
         Best regards,
         ACE-DS/DataMining/cohot6/Group No2
         """
 
-            try:
-                email_data = {
-                    'recipient': clientObj.email,
-                    'subject': 'Booking Confirmation Email',
-                    'message': body,
-                }
-                send_email_to_kafka(json.dumps(email_data))
-                return JsonResponse({'message': 'Email request sent to Kafka successfully!'})
-            except Exception as e:
-                return JsonResponse({'message': f'Error: {str(e)}'}, status=500)
-            
-            
-            #return JsonResponse({'message': 'Booking created successfully!'})
-
-        except Car.DoesNotExist:
-            return JsonResponse({'message': 'Car not found!'}, status=404)
+            email_data = {
+                'recipient': bookingObj.client_id.email,
+                'subject': 'Booking Approval',
+                'message': body,
+            }
+            send_email_to_kafka(json.dumps(email_data)) #Email request sent to Kafka successfully!
+            messages.success(request, "The booking approved successfully !") 
         except Exception as e:
-            return JsonResponse({'message': f'An error occurred: {str(e)}'}, status=500)
+            messages.warning(request, "The error occured while approving, try again !") 
 
-    cars = Car.objects.filter(status='Available')
-    return render(request, 'create_booking.html', {'cars': cars})
+    return redirect('/home_page') 
 
-    #form = BookingForm()   
-    #cars_list = Car.objects.all()
-    #return render(request,'clientPage.html',{'form':form,'cars_list':cars_list}) 
+def cancel_booking(request, id): 
+    bookingObj =  Booking.objects.get(booking_id=id)
+    bookingObj.status = 'Canceled'
+    bookingObj.save()
+    carObj = bookingObj.car_id
+    carObj.status = 'Available'
+    carObj.save()
+    messages.success(request, "The booking has been canceled !")
+    return redirect('/home_page')
 
 def bookingView(request):
     #cars = Car.objects.filter(status='Available')
@@ -318,7 +340,8 @@ def publish_to_kafka(request):
 
    
 def booking_view(request):
-    bookingsList = Booking.objects.all()
+    #bookingsList = Booking.objects.all()
+    bookingsList = Booking.objects.all().order_by('-status')
     return render(request, 'bookings.html', {'bookingsList': bookingsList})
 
 

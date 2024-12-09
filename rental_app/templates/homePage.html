@@ -116,24 +116,34 @@
 
             <div class="row">
                 <div class="container text-center mt-5">
-                    <!-- Product Card -->
-                    <div class="card">
-                        <i class="bi bi-check2-square"></i>
-                        <span class="badge badge-success">{{ available_cars }} </span>
-                        <div class="card-title">Available</div>
-                    </div>
-
-                    <!-- Messages Card -->
-                    <div class="card">
-                        <i class="bi bi-envelope"></i>
-                        <span class="badge badge-danger">{{ booked_cars }}</span>
-                        <div class="card-title">Booked</div>
-                    </div>
-
                     <div class="card">
                         <i class="bi bi-envelope"></i>
                         <span class="badge" style="color: white; background-color: blue;">{{ subscribers }}</span>
                         <div class="card-title">Subscribers</div>
+                    </div>
+                    <!-- Product Card -->
+                    <div class="card">
+                        <i class="bi bi-check2-square"></i>
+                        <span class="badge badge-success">{{ available_cars }} </span>
+                        <div class="card-title">Available Car</div>
+                    </div>
+
+                    <!-- Messages Card -->
+
+                    <div class="card">
+                        <i class="bi bi-envelope"></i>
+                        <span class="badge" style="color: black; background-color: rgb(255, 153, 0);">{{ booked_cars }}</span>
+                        <div class="card-title">Booked_Car</div>
+                    </div>
+                    <div class="card">
+                        <i class="bi bi-envelope"></i>
+                        <span class="badge badge-success">{{ totalApproved_bookings }}</span>
+                        <div class="card-title">Approve</div>
+                    </div>
+                    <div class="card">
+                        <i class="bi bi-envelope"></i>
+                        <span class="badge badge-danger">{{ totalPending_bookings }}</span>
+                        <div class="card-title">Pending</div>
                     </div>
 
                     <div class="card">

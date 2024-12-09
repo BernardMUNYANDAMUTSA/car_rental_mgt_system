@@ -26,7 +26,8 @@ urlpatterns = [
     path('edit_driver/<int:id>', edit_driver),  
     path('update_driver/<int:id>', update_driver),  
     path('destroy_driver/<int:id>', destroy_driver), 
-
+    path('approve_booking/<int:id>', approve_booking),
+    path('cancel_booking/<int:id>', cancel_booking),
     path('home_page', home_page,name='home_page'),
     path('signup/', signup_view, name='signup'),
     path('login/', login_view, name='login'),
@@ -37,11 +38,9 @@ urlpatterns = [
     path('create_booking/', create_booking, name='create_booking'), 
     path('send-email-form/', email_form, name='email_form'),
     path('send-email/', send_confirmation_email, name='send_email'),
-   
     path('publish/', publish_to_kafka, name='publish_to_kafka'),
     path('input/', lambda request: render(request, 'input_page.html'), name='input_page'),
     path('realtime-display/', lambda request: render(request, 'realtime_display.html'), name='realtime_display'),
-
     path('list_bookings/', booking_view, name='booking_view'),
     
 ]
