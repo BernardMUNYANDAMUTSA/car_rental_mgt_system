@@ -35,11 +35,14 @@ monitoring dashboards.
    - Providing a scalable and user-friendly interface for future enhancements
      
 6. Decoupled Services:
+   
   - Design modular and independent services (e.g., booking, fleet management, notifications) that communicate through Kafka.
     
 6. Scalability:
 
    Use Kafka to handle increasing volumes of messages/events without performance degradation.
+   
+7. Integrate cloud services like AWS MySQL, Hadoop, and Kafka for advanced functionality
 
 ## System Overview
 The Car Rental Management System is structured around three main entities:
@@ -53,5 +56,20 @@ The Car Rental Management System is structured around three main entities:
 In addition we django **Auth_user** table to hold details of system users(admin or clients), details include: id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined
 
 These entities are interconnected to ensure seamless operations.
+
+## Installation Instructions
+
+### Prerequisites
+
+  - Software/Tools: Python (3.x): For Django framework and related development
+  - Pip: To manage Python packages
+  - Django installed
+  - Kafka installed, configured and running. Set up Zookeeper (required for Kafka operation)
+  - Hadoop installed, configured and running. 
+  - Text Editor/IDE: VS Code, PyCharm, or any other code editor.
+  - Internet for AWS services, particularly RDS (Relational Database Service) to MySQL
+  - MySQL Workbench (optional) for database management.
+  - Browser: Chrome, Firefox, or any modern web browser for testing
+
 
 
