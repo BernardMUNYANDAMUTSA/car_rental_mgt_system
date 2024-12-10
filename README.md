@@ -1,4 +1,10 @@
-# Car Rental Management System
+#### Module Title: Cloud Computing and Web Programming
+#### Group II, Members:
+  - MUNYANDAMUTSA Bernard: 220001209
+  - MUHIRE Francis: 220019857
+  - MUKESHIMANA Illumine: 223027716
+
+# Project Title "Car Rental Management System"
 
 ## Context and Problem Statement
 Car rental businesses operate in a highly dynamic environment where real-time data synchronization is essential for smooth operations. A car rental management system involves multiple interconnected processes, such as booking cars, managing fleet availability, and sending notifications to customers. Without effective communication between these processes, the system may face issues such as:
@@ -87,6 +93,26 @@ These entities are interconnected to ensure seamless operations.
 - Run server: python manage.py runserver
 
 ## Usage (User Documentation )
+First of all, the system has two kind of users: System Administrator(Superuser) and Client
+
+### Login Page
+The Login Page serves as the secure gateway to the system, designed to accommodate both Admin and Client users. It features intuitive fields for entering a Username and Password, along with a prominent Login button to access the system. For new users, an accessible Registration Link is provided, enabling quick and easy account creation.
+
+This page ensures robust security by handling both authentication (verifying user identity) and authorization (granting appropriate access based on user roles). Whether you're an administrator managing the system or a client utilizing its features, the login page guarantees a seamless and secure entry point.
+![image](https://github.com/user-attachments/assets/e6efef0a-f1b3-4daa-aedf-43b5c232509a)
+
+### Administrator Homepage
+Let login as "Administrator",
+Admin Dashboard: The following image shows the admin dashboard of the Car Rental Management System. It provides an overview of key metrics, such as the number of subscribers, available cars, booked cars, approved bookings, bookings pending for approval and total income (in Rwandan Francs). The interface appears user-friendly with clear navigation options and quick access to system features like driver registration menu, car registration menu, and view bookings menu.
+![image](https://github.com/user-attachments/assets/b81c8359-81bf-4db8-a6de-48cf8557c04f)
+
+
+
+
+
+
+
+
 
 
 
