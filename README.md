@@ -76,9 +76,18 @@ These entities are interconnected to ensure seamless operations.
 - Clone the project from git via this link: https://github.com/BernardMUNYANDAMUTSA/car_rental_mgt_system.git
 - Open the project in your IDE
 - In your trminal/ cmd : cd car_rental_mgt_system
+- Run Zookeeper: .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+- Run Kafka: .\bin\windows\kafka-server-start.bat .\config\server.properties
+- Create Kafka topic called "emailConfirmationTopic": .\bin\windows\kafka-topics.bat --create --topic emailConfirmationTopic --bootstrap-server localhost:9092
+- Run Hadoop services: start-all.cmd
+- Get read Kafka Consumer:
+    - python manage.py shell
+    - from rental_app.kafka_consumer import kafka_consumer
+    - kafka_consumer()
 - Run server: python manage.py runserver
 
 ## Usage (User Documentation )
+
 
 
 
