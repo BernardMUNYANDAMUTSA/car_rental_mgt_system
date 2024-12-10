@@ -28,12 +28,14 @@ To solve these issues, this project proposes an event-driven architecture that u
 ## System Overview
 The Car Rental Management System is structured around three main entities:
 
-**Car**: Contains details about each vehicle like car_id(pk),plate_number, model,year,color,transmission,cost_per_day,status(availability),driver_id.
+**Car**: Contains details about each vehicle like car_id(pk) ,plate_number ,model ,year ,color ,transmission ,cost_per_day ,status(availability) ,driver_id(fk).
 
-**Driver**: Contains details about the drivers, including their availability and assignments.
+**Driver**: Contains details about the drivers, including their driver_id(pk), first_name, last_name, driving_license, email, phone.
 
-**Booking**: Contains details about customer bookings, linking cars, drivers, and rental periods.
+**Booking**: Contains details about customer bookings, linking booking_id(pk), booking_date, return_date, total_cost, status, client_id(fk), car_id(fk).
 
-**These** entities are interconnected to ensure seamless operations.
+In addition we django **Auth_user** table to hold details of system users(admin or clients), details include: id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined
+
+These entities are interconnected to ensure seamless operations.
 
 
