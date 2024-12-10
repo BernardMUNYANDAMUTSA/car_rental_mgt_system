@@ -70,6 +70,18 @@ These entities are interconnected to ensure seamless operations.
   - Internet for AWS services, particularly RDS (Relational Database Service) to MySQL
   - MySQL Workbench (optional) for database management.
   - Browser: Chrome, Firefox, or any modern web browser for testing
+  - 
+## Installation Instructions (Project Setup)
+
+- Clone the project from git via this link: https://github.com/BernardMUNYANDAMUTSA/car_rental_mgt_system.git
+- Open the project in your IDE
+- In your trminal/ cmd : cd car_rental_mgt_system
+- Run server: python manage.py runserver
+
+## Usage (User Documentation )
+
+
+
 
 
 
