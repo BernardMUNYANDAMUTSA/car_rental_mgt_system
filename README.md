@@ -27,9 +27,13 @@ To solve these issues, this project proposes an event-driven architecture that u
 
 ## System Overview
 The Car Rental Management System is structured around three main entities:
+
 **Car**: Contains details about each vehicle like car_id(pk),plate_number, model,year,color,transmission,cost_per_day,status(availability),driver_id.
+
 **Driver**: Contains details about the drivers, including their availability and assignments.
+
 **Booking**: Contains details about customer bookings, linking cars, drivers, and rental periods.
+
 **These** entities are interconnected to ensure seamless operations.
 
 
