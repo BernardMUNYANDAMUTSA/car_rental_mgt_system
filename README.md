@@ -12,9 +12,7 @@ To solve these issues, this project proposes an event-driven architecture that u
 ## Objectives
 1. Online services
    - To offer a user-friendly web application that empowers our clients to book a car conveniently, anytime and anywhere.
-   - 
 2. Real-Time Monitoring:
-   Provide a user-friendly dashboard for administrators to monitor bookings and car availability.
-   
-4. Enhanced Customer Experience:
-Send immediate notifications for bookings and maintain accurate fleet availability to avoid inconvenience.
+   - Provide a user-friendly dashboard for administrators to monitor bookings and car availability.
+3. Enhanced Customer Experience:
+   - Send immediate notifications for bookings and maintain accurate fleet availability to avoid inconvenience.
