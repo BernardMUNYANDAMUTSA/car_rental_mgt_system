@@ -121,6 +121,15 @@ When you click on Delete button, the system prompt comfirmation message before d
 The following interface help admistrator to record a new car and immediately assigned to a driver (in drivers selection box) then click Submit button.
 ![image](https://github.com/user-attachments/assets/31d9a8a6-464d-4bad-83bb-6f07ea25bb7e)
 
+### Bookings management interface
+
+The following interface help admistrator, to view all bookings transactions with status. This interface also help admin to approve by click on Approve button or reject a booking by click on Cancel for the pending bookings.
+
+![image](https://github.com/user-attachments/assets/8114675f-c675-435c-94c4-a078c34fe54c)
+
+## Login as Client
+
+
 
 
 
