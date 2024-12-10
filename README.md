@@ -106,6 +106,26 @@ Let login as "Administrator",
 Admin Dashboard: The following image shows the admin dashboard of the Car Rental Management System. It provides an overview of key metrics, such as the number of subscribers, available cars, booked cars, approved bookings, bookings pending for approval and total income (in Rwandan Francs). The interface appears user-friendly with clear navigation options and quick access to system features like driver registration menu, car registration menu, and view bookings menu.
 ![image](https://github.com/user-attachments/assets/b81c8359-81bf-4db8-a6de-48cf8557c04f)
 
+### Driver management form
+
+The following interface, help system admin to record new driver,view all drivers, edit existing driver's information and do deletion of existing driver record.
+![image](https://github.com/user-attachments/assets/60d0fdeb-2557-48c9-8f4d-b8bb0a2f42cd)
+
+When you click on Edit button, the system gives you interface for editing existing information then click update button
+![image](https://github.com/user-attachments/assets/49f5c532-d49c-4cbc-9721-9237faed28aa)
+
+When you click on Delete button, the system prompt comfirmation message before deletion as follow:
+![image](https://github.com/user-attachments/assets/93297bf3-68e7-40f5-ba34-6465238ada47)
+
+### New car registration form
+The following interface help admistrator to record a new car and immediately assigned to a driver (in drivers selection box) then click Submit button.
+![image](https://github.com/user-attachments/assets/31d9a8a6-464d-4bad-83bb-6f07ea25bb7e)
+
+
+
+
+
+
 
 
 
