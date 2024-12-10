@@ -4,26 +4,42 @@
 Car rental businesses operate in a highly dynamic environment where real-time data synchronization is essential for smooth operations. A car rental management system involves multiple interconnected processes, such as booking cars, managing fleet availability, and sending notifications to customers. Without effective communication between these processes, the system may face issues such as:
 
 - Double-booking of cars due to delayed updates.
+  
 - Inconsistent data between booking and fleet management systems.
+
 - Delayed notifications, reducing customer satisfaction.
   
 To solve these issues, this project proposes an event-driven architecture that uses Apache Kafka to handle real-time communication between services.
 
+## Proposed Solution
+
+To address these challenges, the Car Rental Management System integrates Apache Kafka for real-time communication. Kafka ensures the system remains responsive and scalable, providing near-instant updates across services like fleet management, notification handling, and 
+
+monitoring dashboards.
+
 ## Objectives
 1. Online services
+   
    - To offer a user-friendly web application that empowers our clients to book a car conveniently, anytime and anywhere.
+     
    - Simplifying the car rental process for both administrators and customers
      
-2. Real-Time Monitoring:
+3. Real-Time Monitoring:
+   
    - Maintaining a systematic record of available cars, drivers, and bookings
+     
    - Provide a user-friendly dashboard for administrators to monitor bookings and car availability.
   
-4. Enhanced Customer Experience:
+5. Enhanced Customer Experience:
    - Send immediate notifications for bookings and maintain accurate fleet availability to avoid inconvenience.
    - Providing a scalable and user-friendly interface for future enhancements
      
-5. Decoupled Services:
+6. Decoupled Services:
   - Design modular and independent services (e.g., booking, fleet management, notifications) that communicate through Kafka.
+    
+6. Scalability:
+
+   Use Kafka to handle increasing volumes of messages/events without performance degradation.
 
 ## System Overview
 The Car Rental Management System is structured around three main entities:
