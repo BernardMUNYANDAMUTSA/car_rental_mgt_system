@@ -142,6 +142,37 @@ Once a user entered valid usernam and password on login page. The system display
 When a client, click on Book Now button, the system open a window to provide booking start date, return date and input field to upload payment receipt as follow:
 ![image](https://github.com/user-attachments/assets/b9fc9929-a744-41b8-97ff-85ad3bff803d)
 
+After booking submssion, the system change the car booking status to **Pending** and can not be booked by any other client. 
+![image](https://github.com/user-attachments/assets/1fd40de4-1497-4a84-bf47-380f820b8ffd)
+
+Also after submission, using kafka cunsumer, the syetm send submission confirmation email to the client's email
+
+![image](https://github.com/user-attachments/assets/3adc360b-0eaf-4dd4-aebf-a813991d45f4)
+
+![image](https://github.com/user-attachments/assets/ecb75bba-fe79-4590-855c-2adb01cdff01)
+
+Also, the system upload the submited payment receipt to HDFS in uploads directory as follow:
+![image](https://github.com/user-attachments/assets/f3c60252-6803-4899-8edd-95e4d785097b)
+
+![image](https://github.com/user-attachments/assets/5630179e-aaba-4e3e-acbc-e0d2c5d26406)
+
+We have seen that the booking submitted successfuly and waiting approval. The system admin login, verify payment receipt and approve booking request as follow:
+
+![image](https://github.com/user-attachments/assets/d4647a48-3bbb-42cf-8c9a-84305a750d8b)
+
+By founding that there are some booking pending for approval, then the admin click on Bookings menu for approval or cancel
+![image](https://github.com/user-attachments/assets/fcd67d77-bac3-4c1a-8ac3-005a1932d11f)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
