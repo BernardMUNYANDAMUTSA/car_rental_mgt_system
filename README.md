@@ -106,13 +106,13 @@ This page ensures robust security by handling both authentication (verifying use
 ![image](https://github.com/user-attachments/assets/e6efef0a-f1b3-4daa-aedf-43b5c232509a)
 
 ### Administrator Homepage
-Let login as "Administrator",
+Let login as "Administrator" **(credentials for admin: username= 12345 , password= Bernard )**,
 Admin Dashboard: The following image shows the admin dashboard of the Car Rental Management System. It provides an overview of key metrics, such as the number of subscribers, available cars, booked cars, approved bookings, bookings pending for approval and total income (in Rwandan Francs). The interface appears user-friendly with clear navigation options and quick access to system features like driver registration menu, car registration menu, and view bookings menu.
 ![image](https://github.com/user-attachments/assets/b81c8359-81bf-4db8-a6de-48cf8557c04f)
 
 ### Driver management form
 
-The following interface, help system admin to record new driver,view all drivers, edit existing driver's information and do deletion of existing driver record.
+The following interface is for CRUD (Create, Read, Update, Delete), it help system admin to record new driver,view all drivers, edit existing driver's information and do deletion of existing driver record.
 ![image](https://github.com/user-attachments/assets/60d0fdeb-2557-48c9-8f4d-b8bb0a2f42cd)
 
 When you click on Edit button, the system gives you interface for editing existing information then click update button
@@ -140,6 +140,7 @@ The following interface help admistrator, to view all bookings transactions with
  ## Client Home
 Once a user entered valid usernam and password on login page. The system displays availables cars ready for booking, pending cars waiting for approvals and booked cars
 ![image](https://github.com/user-attachments/assets/e6f6ef2e-d8df-4909-9f61-e75f2b59f6a8)
+**(credentials for client Muhire Francis: username= 12347 , password= Bernard )**
 
 **NOTE:** System can not allow user to book a car which is already booked or pening for approval, system allow booking for availables cars by click on **Book Now** button. 
 
@@ -176,6 +177,22 @@ Also after approval, using kafka cunsumer, the system send approval confirmation
 Back to the client portal, the system shows that the car changed the status to **booked**(Not available for booking) as follow:
 
 ![image](https://github.com/user-attachments/assets/44e6bb17-e54d-4898-8d67-b207982db836)
+
+## Technologies Used
+
+- Framework: Django
+- Frontend: We used Bootstrap, Javascript, HTML, CSS, and AJAX for designing responsive and interactive user interfaces.
+
+  For instance,  AJAX was used in the project on driver deletion:
+  ![image](https://github.com/user-attachments/assets/23fc406e-a84c-4978-bb71-e3decf46b152)
+
+- Tools:
+    - Kafka for Real-Time Communication
+    - Hadoop (hdfs) for for managing uploaded payment receipts
+- MySQL Database on AWS
+
+
+
 
 
 
