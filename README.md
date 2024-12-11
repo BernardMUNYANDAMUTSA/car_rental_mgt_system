@@ -163,6 +163,20 @@ We have seen that the booking submitted successfuly and waiting approval. The sy
 By founding that there are some booking pending for approval, then the admin click on Bookings menu for approval or cancel
 ![image](https://github.com/user-attachments/assets/fcd67d77-bac3-4c1a-8ac3-005a1932d11f)
 
+When the booking is approved, automatically the system increased number of approved bookings, booked cars, total income (Rwf) and decrease available cars, number of pending bookings.
+![image](https://github.com/user-attachments/assets/7fd8470e-37d6-4f42-a44a-62866cacedd8)
+
+Also after approval, using kafka cunsumer, the system send approval confirmation email to the client composed by Driver'details and contacts
+![image](https://github.com/user-attachments/assets/bcf95145-385e-47e5-b25d-4c0ed0a561e2)
+
+Back to the client portal, the system shows that the car changed the status to **booked**(Not available for booking) as follow:
+
+![image](https://github.com/user-attachments/assets/44e6bb17-e54d-4898-8d67-b207982db836)
+
+
+
+
+
 
 
 
