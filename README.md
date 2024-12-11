@@ -129,7 +129,25 @@ The following interface help admistrator, to view all bookings transactions with
 
 
 ## Login as Client
- wait a min....
+
+ To login the system, new user have to sign-up and get username and password. The following Sign-Up page allows users to create an account by providing personal information, enabling access to services or features.
+ ![image](https://github.com/user-attachments/assets/55b72941-f8e3-4883-b559-e5b5f4597787)
+
+ ## Client Home
+Once a user entered valid usernam and password on login page. The system displays availables cars ready for booking, pending cars waiting for approvals and booked cars
+![image](https://github.com/user-attachments/assets/e6f6ef2e-d8df-4909-9f61-e75f2b59f6a8)
+
+**NOTE:** System can not allow user to book a car which is already booked or pening for approval, system allow booking for availables cars by click on **Book Now** button. 
+
+When a client, click on Book Now button, the system open a window to provide booking start date, return date and input field to upload payment receipt as follow:
+![image](https://github.com/user-attachments/assets/b9fc9929-a744-41b8-97ff-85ad3bff803d)
+
+
+
+
+
+
+
 
 
 
