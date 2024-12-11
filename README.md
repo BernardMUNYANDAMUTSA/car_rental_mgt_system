@@ -86,10 +86,13 @@ These entities are interconnected to ensure seamless operations.
 - Run Kafka: .\bin\windows\kafka-server-start.bat .\config\server.properties
 - Create Kafka topic called "emailConfirmationTopic": .\bin\windows\kafka-topics.bat --create --topic emailConfirmationTopic --bootstrap-server localhost:9092
 - Run Hadoop services: start-all.cmd
-- Get read Kafka Consumer:
+- Get ready Kafka Consumer:
     - python manage.py shell
     - from rental_app.kafka_consumer import kafka_consumer
     - kafka_consumer()
+  
+![image](https://github.com/user-attachments/assets/3adc360b-0eaf-4dd4-aebf-a813991d45f4)
+
 - Run server: python manage.py runserver
 
 ## Usage (User Documentation )
