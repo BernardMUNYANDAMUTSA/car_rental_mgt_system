@@ -91,7 +91,8 @@ These entities are interconnected to ensure seamless operations.
     - from rental_app.kafka_consumer import kafka_consumer
     - kafka_consumer()
   
-![image](https://github.com/user-attachments/assets/3adc360b-0eaf-4dd4-aebf-a813991d45f4)
+![image](https://github.com/user-attachments/assets/f47a2044-97dd-40ad-8857-e9304c64ee88)
+
 
 - Run server: python manage.py runserver
 
