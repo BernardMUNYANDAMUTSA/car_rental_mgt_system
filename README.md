@@ -189,7 +189,7 @@ Back to the client portal, the system shows that the car changed the status to *
 - Tools:
     - Kafka for Real-Time Communication
     - Hadoop (hdfs) for for managing uploaded payment receipts
-- MySQL Database on AWS
+- MySQL Database on AWS : We connected our Django application to the AWS-hosted MySQL database.
 
 
 
