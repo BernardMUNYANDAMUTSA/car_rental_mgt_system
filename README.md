@@ -190,6 +190,33 @@ Back to the client portal, the system shows that the car changed the status to *
     - Kafka for Real-Time Communication
     - Hadoop (hdfs) for for managing uploaded payment receipts
 - MySQL Database on AWS : We connected our Django application to the AWS-hosted MySQL database.
+  
+## Members' contribution
+
+### - MUNYANDAMUTSA Bernard: 220001209 :
+Mr.Bernard 's contributions are the followings:
+- Setting-up django project.
+- Installation of kafka and integration into our project
+- Installation of hadoop and integration into our project
+- frontend design usign HTML, Bootstrap features, CSS and AJAX for designing responsive and interactive user interfaces.
+- Development of admin dashboard(Fronted and backend) to show in summary total number of subscribers (registerd Clients), total number of available cars ready for booking, total number of cars already booked, total number of bookings approved, total number of bookings waiting for approval(Pendings) and total Income amount in Rwf 
+
+### MUHIRE Francis: 220019857
+
+Mr.Francis 's contributions are the followings:
+- Development of user management module, includes client sign-up and login with authentication and authorization
+- Creation of database on AWS and configuration of the database into our project
+
+### MUKESHIMANA Illumine: 223027716
+
+Mrs. Illumine 's contributions are the followings:
+- Database design and creation of models
+- Development of CRUD (Create, Read, Update an Delete) on drivers table
+- System documentation (The case study, objectives, user guide, Technologies Used, etc..)
+
+
+
+
 
 
 
