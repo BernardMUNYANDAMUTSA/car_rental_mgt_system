@@ -178,6 +178,18 @@ Back to the client portal, the system shows that the car changed the status to *
 
 ![image](https://github.com/user-attachments/assets/44e6bb17-e54d-4898-8d67-b207982db836)
 
+### Logout Button
+As we have option to login the system, we have option to logout.
+A logout button on our system protects user data by ending login user session, enhancing security, enabling account switching, freeing resources, and ensuring compliance with privacy regulations.
+
+We have logout button on both sides of users as follow:
+Logout button on Admin side
+![image](https://github.com/user-attachments/assets/a98e07a6-adb4-4d4d-b248-fc6de287ed09)
+
+Also, there is logout option on client side
+![image](https://github.com/user-attachments/assets/f65df29e-d03a-4fa2-bde1-b25929a43d26)
+
+
 ## Technologies Used
 
 - Framework: Django
