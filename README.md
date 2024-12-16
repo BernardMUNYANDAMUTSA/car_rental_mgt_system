@@ -201,15 +201,14 @@ Mr.Bernard 's contributions are the followings:
 - Frontend design usign Bootstrap, Javascript and AJAX for designing responsive and interactive user interfaces.
 - Development of admin dashboard(Fronted and backend) to show in summary total number of subscribers (registerd Clients), total number of available cars ready for booking, total number of cars already booked, total number of bookings approved, total number of bookings waiting for approval(Pendings) and total Income amount in Rwf 
 
-### MUHIRE Francis: 220019857
+### - MUHIRE Francis: 220019857
 
 Mr.Francis 's contributions are the followings:
 - Development of user management module, includes client sign-up and login with authentication and authorization
 - Used Amazon RDS to create and configure a MySQL database called "carrentaldb2".
 - Connected our Django application(Car Rental Management System) to the AWS-hosted MySQL database
 
-### MUKESHIMANA Illumine: 223027716
-------------------------------------
+### - MUKESHIMANA Illumine: 223027716
 
 Mrs. Illumine 's contributions are the followings:
 - Frontend design usign HTML and CSS for designing responsive and interactive user interfaces
