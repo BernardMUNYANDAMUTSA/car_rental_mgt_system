@@ -53,11 +53,13 @@ monitoring dashboards.
 ## System Overview
 The Car Rental Management System is structured around three main entities:
 
-**Car**: Contains details about each vehicle like car_id(pk) ,plate_number ,model ,year ,color ,transmission ,cost_per_day ,status(availability) ,driver_id(fk).
+![image](https://github.com/user-attachments/assets/f9ab838f-bf39-49a9-b452-627a0e79bc56)
 
-**Driver**: Contains details about the drivers, including their driver_id(pk), first_name, last_name, driving_license, email, phone.
+**Cars**: Contains details about each vehicle like car_id(pk) ,plate_number ,model ,year ,color ,transmission ,cost_per_day ,status(availability) ,driver_id(fk).
 
-**Booking**: Contains details about customer bookings, linking booking_id(pk), booking_date, return_date, total_cost, status, client_id(fk), car_id(fk).
+**Drivers**: Contains details about the drivers, including their driver_id(pk), first_name, last_name, driving_license, email, phone.
+
+**Bookings**: Contains details about customer bookings, linking booking_id(pk), booking_date, return_date, total_cost, status, client_id(fk), car_id(fk).
 
 In addition we django **Auth_user** table to hold details of system users(admin or clients), details include: id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined
 
