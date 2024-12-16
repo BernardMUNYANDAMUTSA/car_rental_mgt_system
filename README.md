@@ -208,6 +208,7 @@ Mr.Francis 's contributions are the followings:
 - Development of user management module, includes client sign-up and login with authentication and authorization
 - Used Amazon RDS to create and configure a MySQL database called "carrentaldb2".
 - Connected our Django application(Car Rental Management System) to the AWS-hosted MySQL database
+- Development of new car registration module (create)
 
 ### - MUKESHIMANA Illumine: 223027716
 
