@@ -208,6 +208,7 @@ Mr.Francis 's contributions are the followings:
 - Creation of database on AWS and configuration of the database into our project
 
 ### MUKESHIMANA Illumine: 223027716
+------------------------------------
 
 Mrs. Illumine 's contributions are the followings:
 - Database design and creation of models
