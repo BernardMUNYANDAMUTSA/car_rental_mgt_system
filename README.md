@@ -195,10 +195,10 @@ Back to the client portal, the system shows that the car changed the status to *
 
 ### - MUNYANDAMUTSA Bernard: 220001209 :
 Mr.Bernard 's contributions are the followings:
-- Setting-up django project.
+- Setting-up django, created project and application.
+- - Frontend design usign Bootstrap, Javascript and AJAX for designing responsive and interactive user interfaces.
 - Installation of kafka , created Kafka topic, created kafka producer and kafka consumer into our project  
 - Installation of hadoop, integrate it into our project and upload attached payment receipt files into HDFS
-- Frontend design usign Bootstrap, Javascript and AJAX for designing responsive and interactive user interfaces.
 - Development of admin dashboard(Fronted and backend) to show in summary total number of subscribers (registerd Clients), total number of available cars ready for booking, total number of cars already booked, total number of bookings approved, total number of bookings waiting for approval(Pendings) and total Income amount in Rwf 
 
 ### - MUHIRE Francis: 220019857
